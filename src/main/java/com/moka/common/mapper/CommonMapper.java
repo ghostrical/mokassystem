@@ -15,4 +15,10 @@ public interface CommonMapper {
 
     MokaCommonPersnlTypeResponseDto mokaCommonPersnlTypeToMokaCommonPersnlTypeResponseDto(MokaCommonPersnlType mokaCommonPersnlType);
 
+    MokaCommonRankType mokaCommonRankTypePostDtoToMokaCommonRankType(MokaCommonRankTypePostDto mokaCommonRankTypePostDto);
+
+    MokaCommonRankType mokaCommonRankTypePatchDtoToMokaCommonRankType(MokaCommonRankTypePatchDto mokaCommonRankTypePatchDto);
+
+    MokaCommonRankTypeResponseDto mokaCommonRankTypeToMokaCommonRankTypeResponseDto(MokaCommonRankType mokaCommonRankType);
+
 }
