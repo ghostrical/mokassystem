@@ -13,18 +13,10 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class MokaCommonLocationPostDto {
 
-    @NotBlank
-    private String commonLocationCode;
-
     private String commonLocationName;
 
     private double commonLocationMapx;
 
     private double commonLocationMapy;
 
-    public MokaCommonLocationPostDto(String commonLocationName, double commonLocationMapx, double commonLocationMapy) {
-        this.commonLocationName = commonLocationName;
-        this.commonLocationMapx = commonLocationMapx;
-        this.commonLocationMapy = commonLocationMapy;
-    }
 }
