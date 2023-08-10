@@ -11,10 +11,15 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MokaCommonRankTypeResponseDto {
+public class MokaCommonLocationResponseDto {
 
-    private String commonRankTypeCode;
+    private String commonLocationCode;
 
-    private String commonRankTypeName;
+    private String commonLocationName;
+
+    private double commonLocationMapx;
+
+    private double commonLocationMapy;
+
 
 }

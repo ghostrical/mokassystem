@@ -5,16 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class MokaCommonPersnlTypeResponseDto {
+public class MokaCommonOrderStateResponseDto {
 
-    private String commonPersnlTypeCode;
+    private String commonOrderStateCode;
 
-    private String commonPersnlTypeName;
+    private String commonOrderStateName;
 
 }

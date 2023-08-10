@@ -21,4 +21,22 @@ public interface CommonMapper {
 
     MokaCommonRankTypeResponseDto mokaCommonRankTypeToMokaCommonRankTypeResponseDto(MokaCommonRankType mokaCommonRankType);
 
+    MokaCommonOrderState mokaCommonOrderStatePostDtoToMokaCommonOrderState(MokaCommonOrderStatePostDto mokaCommonOrderStatePostDto);
+
+    MokaCommonOrderState mokaCommonOrderStatePatchDtoToMokaCommonOrderState(MokaCommonOrderStatePatchDto mokaCommonOrderStatePatchDto);
+
+    MokaCommonOrderStateResponseDto mokaCommonOrderStateToMokaCommonOrderStateResponseDto(MokaCommonOrderState mokaCommonOrderState);
+
+    MokaCommonLocation mokaCommonLocationPostDtoToMokaCommonLocation(MokaCommonLocationPostDto mokaCommonLocationPostDto);
+
+    MokaCommonLocation mokaCommonLocationPatchDtoToMokaCommonLocation(MokaCommonLocationPatchDto mokaCommonLocationPatchDto);
+
+    MokaCommonLocationResponseDto mokaCommonLocationToMokaCommonLocationResponseDto(MokaCommonLocation mokaCommonLocation);
+
+    MokaCommonOrderHistory mokaCommonOrderHistoryPostDtoToMokaCommonOrderHistory(MokaCommonOrderHistoryPostDto mokaCommonOrderHistoryPostDto);
+
+    MokaCommonOrderHistory mokaCommonOrderHistoryPatchDtoToMokaCommonOrderHistory(MokaCommonOrderHistoryPatchDto mokaCommonOrderHistoryPatchDto);
+
+    MokaCommonOrderHistoryResponseDto mokaCommonOrderHistoryToMokaCommonOrderHistoryResponseDto(MokaCommonOrderHistory mokaCommonOrderHistory);
+
 }
