@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,5 +33,17 @@ public class MokaPersnlResponseDto {
     private String persnlRankTypeCode;
 
     private String persnlTypeCode;
+
+    private String createPersnl;
+
+    private LocalDateTime createDttm;
+
+    private String createIp;
+
+    private String updatePersnl;
+
+    private LocalDateTime updateDttm;
+
+    private String updateIp;
 
 }

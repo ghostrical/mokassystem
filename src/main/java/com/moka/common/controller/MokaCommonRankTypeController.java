@@ -113,7 +113,4 @@ public class MokaCommonRankTypeController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
-
-
 }

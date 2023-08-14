@@ -6,11 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -43,12 +43,38 @@ public class MokaPersnl {
     @Column(length = 1000)
     private String persnlAddr;
 
+    @Column
+    private String createPersnl;
+
+    @CreatedDate
+    @Column(name = "create_dttm")
+    private LocalDateTime createDttm = LocalDateTime.now();
+
+    @Column
+    private String createIp;
+
+    @Column
+    private String updatePersnl;
+
+    @LastModifiedDate
+    @Column(name = "update_dttm")
+    private LocalDateTime updateDttm;
+
+    @Column
+    private String updateIp;
+
+
     // 외래키가 있는 곳이 연관관계의 주인이다.
 
-    @OneToOne(mappedBy = "mokaPersnl")
+    @OneToOne
+    @JoinColumn(name = "persnl_type_code")
     private MokaCommonPersnlType mokaCommonPersnlType;
 
-    @OneToOne(mappedBy = "mokaPersnl")
+    @OneToOne
+    @JoinColumn(name = "persnl_rank_type_code")
     private MokaCommonRankType mokaCommonRankType;
+
+//    @OneToOne(mappedBy = "mokaPersnl")
+//    private MokaCommonRankType mokaCommonRankType;
 
 }

@@ -37,6 +37,7 @@ public class MokaPersnlController {
 
     @PostMapping
     public ResponseEntity postPersnl(@Valid @RequestBody MokaPersnlPostDto requestBody){
+
         MokaPersnl mokaPersnl = mapper.mokaPersnlPostDtoToMokaPersnl(requestBody);
 
         MokaPersnl createdMokaPersnl =
@@ -44,10 +45,17 @@ public class MokaPersnlController {
 
         URI location = UriCreator.createUri(MOKA_PERSNL_DEFAULT_URL, createdMokaPersnl.getPersnlSerialNum());
 
-        //http://localhost:8080/moka/v1/common/ranktype
+        //http://localhost:8080/moka/v1/persnl
 //        {
-//            "commonRankTypeCode":"RTA1",
-//                "commonRankTypeName":"회장"
+//            "persnlId":"ID3",
+//                "persnlPw":"id1pw1",
+//                "persnlResidentNum":"0000003111111",
+//                "persnlPhone":"010-1111-2222",
+//                "persnlName":"김김김",
+//                "persnlEmail":"aaa@aaa.com",
+//                "persnlAddr":"주소주소1",
+//                "persnlRankTypeCode":"RTA1",
+//                "persnlTypeCode":"PTA007"
 //        }
 
         return new ResponseEntity<>(

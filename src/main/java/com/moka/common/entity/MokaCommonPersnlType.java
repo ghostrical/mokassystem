@@ -19,8 +19,11 @@ public class MokaCommonPersnlType {
     @Column(length = 50)
     private String commonPersnlTypeName;
 
-    @OneToOne
-    @JoinColumn(name = "persnl_serial_num")
+//    @OneToOne
+//    @JoinColumn(name = "persnl_type_code")
+//    private MokaPersnl mokaPersnl;
+
+    @OneToOne(mappedBy = "mokaCommonPersnlType")
     private MokaPersnl mokaPersnl;
 
     public MokaCommonPersnlType(String commonPersnlTypeCode, String commonPersnlTypeName) {
