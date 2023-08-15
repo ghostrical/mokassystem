@@ -63,9 +63,6 @@ public class MokaPersnl {
     @Column
     private String updateIp;
 
-
-    // 외래키가 있는 곳이 연관관계의 주인이다.
-
     @OneToOne
     @JoinColumn(name = "persnl_type_code")
     private MokaCommonPersnlType mokaCommonPersnlType;

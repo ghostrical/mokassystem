@@ -1,6 +1,7 @@
 package com.moka.persnl.controller;
 
 
+import com.moka.factory.HttpServletRequestFactory;
 import com.moka.persnl.dto.MokaPersnlPatchDto;
 import com.moka.persnl.dto.MokaPersnlPostDto;
 import com.moka.persnl.dto.MokaPersnlResponseDto;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -36,9 +38,17 @@ public class MokaPersnlController {
     }
 
     @PostMapping
-    public ResponseEntity postPersnl(@Valid @RequestBody MokaPersnlPostDto requestBody){
+    public ResponseEntity postPersnl(@Valid @RequestBody MokaPersnlPostDto requestBody, HttpServletRequest request){
 
         MokaPersnl mokaPersnl = mapper.mokaPersnlPostDtoToMokaPersnl(requestBody);
+
+        /// IP
+
+        String clientIp = new HttpServletRequestFactory().getClientIp(request);
+        System.out.println("clint IP : "+clientIp);
+        mokaPersnl.setCreateIp(clientIp);
+
+        ///
 
         MokaPersnl createdMokaPersnl =
                 mokaPersnlService.createPersnl(mokaPersnl);
@@ -67,12 +77,24 @@ public class MokaPersnlController {
     @PatchMapping("/{persnlSerialNum}")
     public ResponseEntity patchPersnl(
             @PathVariable("persnlSerialNum") String persnlSerialNum,
-            @Valid @RequestBody MokaPersnlPatchDto requestBody ){
+            @Valid @RequestBody MokaPersnlPatchDto requestBody, HttpServletRequest request ){
 
         requestBody.setPersnlSerialNum(persnlSerialNum);
 
+        MokaPersnl mappedPersnl = mapper.mokaPersnlPatchDtoToMokaPersnl(requestBody);
+
+        /// IP
+
+        String clientIp = new HttpServletRequestFactory().getClientIp(request);
+        System.out.println("clint IP : "+clientIp);
+        mappedPersnl.setUpdateIp(clientIp);
+
+        ///
+
         MokaPersnl mokaPersnl =
-                mokaPersnlService.updateMokaPersnl(mapper.mokaPersnlPatchDtoToMokaPersnl(requestBody));
+                mokaPersnlService.updateMokaPersnl(mappedPersnl);
+
+
 
         // http://localhost:8080/moka/v1/persnl/A001
 //        {
