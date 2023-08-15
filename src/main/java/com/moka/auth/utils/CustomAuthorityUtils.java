@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomAuthorityUtils {
-    @Value("${jwtsecurity.adminpersnltype}")
-    private String adminPersnlId;
+    // CUSTOM으로 환경변수 받을 수 있을까.
+    private String adminPersnlId = "PTA001";
 
     private final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_CLIENT_USER", "ROLE_SUPPLY_USER", "ROLE_FACTORY_USER");
     private final List<GrantedAuthority> CLIENT_USER_ROLES = AuthorityUtils.createAuthorityList("ROLE_CLIENT_USER");
