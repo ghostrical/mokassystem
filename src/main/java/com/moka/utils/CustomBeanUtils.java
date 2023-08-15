@@ -23,7 +23,8 @@ public class CustomBeanUtils<T> {
 
         for (final Field property : source.getClass().getDeclaredFields()) {
             Object sourceProperty = src.getPropertyValue(property.getName());
-            if (sourceProperty != null && !(sourceProperty instanceof Collection<?>)) {
+            System.out.println("property.getName : "+property.getName());
+            if (sourceProperty != null && !(sourceProperty instanceof Collection<?>) && !property.getName().contains("Dttm")) {
                 dest.setPropertyValue(property.getName(), sourceProperty);
             }
         }

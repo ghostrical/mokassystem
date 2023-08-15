@@ -10,6 +10,7 @@ import com.moka.utils.CustomBeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,10 +100,14 @@ public class MokaPersnlService {
     public MokaPersnl updateMokaPersnl(MokaPersnl mokaPersnl){
         MokaPersnl findMokaPersnl = findVerifiedMokaPersnl(mokaPersnl.getPersnlSerialNum());
 
+        System.out.println("update date : "+findMokaPersnl.getUpdateDttm());
+        System.out.println("create date : "+findMokaPersnl.getCreateDttm());
+
         MokaPersnl updatingMokaPersnl =
                 beanUtils.copyNonNullProperties(mokaPersnl, findMokaPersnl);
 
-        // 만약 create가 null이면 직접 주입.
+
+        updatingMokaPersnl.setUpdateDttm(LocalDateTime.now());
 
         return mokaPersnlRepository.save(updatingMokaPersnl);
     }

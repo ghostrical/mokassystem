@@ -74,10 +74,16 @@ public class MokaPersnlController {
         MokaPersnl mokaPersnl =
                 mokaPersnlService.updateMokaPersnl(mapper.mokaPersnlPatchDtoToMokaPersnl(requestBody));
 
-        // http://localhost:8080/moka/v1/common/ranktype/RTA1
+        // http://localhost:8080/moka/v1/persnl/A001
 //        {
-//            "commonRankTypeCode":"RTA1",
-//                "commonRankTypeName":"회장"
+//            "persnlPw":"id3pw3",
+//                "persnlResidentNum":"2222223111111",
+//                "persnlPhone":"010-5555-6666",
+//                "persnlName":"박박박",
+//                "persnlEmail":"ccc@ccc.com",
+//                "persnlAddr":"주소주소3",
+//                "persnlRankTypeCode":"RTA3",
+//                "persnlTypeCode":"PTC001"
 //        }
 
         return new ResponseEntity<>(
@@ -91,7 +97,7 @@ public class MokaPersnlController {
         MokaPersnl mokaPersnl =
                 mokaPersnlService.findMokaPersnl(persnlSerialNum);
 
-        // http://localhost:8080/moka/v1/common/ranktype/RTA3
+        // http://localhost:8080/moka/v1/persnl/A002
 
 
         return new ResponseEntity<>(
@@ -109,7 +115,7 @@ public class MokaPersnlController {
                         .map(mokaPersnl -> mapper.mokaPersnlToMokaPersnlResponseDto(mokaPersnl))
                         .collect(Collectors.toList());
 
-        // http://localhost:8080/moka/v1/common/ranktype
+        // http://localhost:8080/moka/v1/persnl
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -119,7 +125,7 @@ public class MokaPersnlController {
             @PathVariable("persnlSerialNum") String persnlSerialNum){
         mokaPersnlService.deleteMokaPersnl(persnlSerialNum);
 
-// http://localhost:8080/moka/v1/common/ranktype/RTAB
+// http://localhost:8080/moka/v1/persnl/A002
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
