@@ -48,7 +48,7 @@ public class MemberDetailsService implements UserDetailsService {
             return authorityUtils.createAuthorities(this.getRoles());
         }
 
-        // getPassword일까 getPersnlPw일까
+        // getPassword일까 getPersnlPw일까 -> getPassword 메서드로 return getPersnlPw를 받음.
         @Override
         public String getPassword() {
             return getPersnlPw();
