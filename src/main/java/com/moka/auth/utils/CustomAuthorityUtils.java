@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 @Component
 public class CustomAuthorityUtils {
    // @Value("${mail.address.admin}")
-    private String adminPersnlTypeCode = "PTA001";
+   @Value("${jwtauth.admin}") // 변수 만든거 통한다.
+    private String adminPersnlTypeCode;
 
     private final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_CLIENT_USER", "ROLE_SUPPLY_USER", "ROLE_FACTORY_USER");
     private final List<GrantedAuthority> CLIENT_USER_ROLES = AuthorityUtils.createAuthorityList("ROLE_CLIENT_USER");

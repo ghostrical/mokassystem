@@ -35,7 +35,7 @@ public class MemberDetailsService implements UserDetailsService {
     }
 
     private final class MemberDetails extends MokaPersnl implements UserDetails {
-        // (1) ////// email
+
         MemberDetails(MokaPersnl mokaPersnl) {
             setPersnlSerialNum(mokaPersnl.getPersnlSerialNum());
             setPersnlId(mokaPersnl.getPersnlId());
@@ -54,7 +54,7 @@ public class MemberDetailsService implements UserDetailsService {
             return getPersnlPw();
         }
 
-        ////// email
+
         @Override
         public String getUsername() {
             return getPersnlId();

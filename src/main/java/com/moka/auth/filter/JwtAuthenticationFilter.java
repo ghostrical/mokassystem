@@ -18,49 +18,49 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
 
-public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {  // (1)
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenizer jwtTokenizer;
 
-    // (2)
+
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenizer jwtTokenizer) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenizer = jwtTokenizer;
     }
 
-    // (3)
+
     @SneakyThrows
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
 
-        ObjectMapper objectMapper = new ObjectMapper();    // (3-1)
-        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class); // (3-2)
+        ObjectMapper objectMapper = new ObjectMapper();
+        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
 
-        // (3-3)
+
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
 
-        return authenticationManager.authenticate(authenticationToken);  // (3-4)
+        return authenticationManager.authenticate(authenticationToken);
     }
 
-    // (4)
+
     @Override
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
                                             Authentication authResult) throws ServletException, IOException {
-        MokaPersnl mokaPersnl = (MokaPersnl) authResult.getPrincipal();  // (4-1)
+        MokaPersnl mokaPersnl = (MokaPersnl) authResult.getPrincipal();
 
-        String accessToken = delegateAccessToken(mokaPersnl);   // (4-2)
-        String refreshToken = delegateRefreshToken(mokaPersnl); // (4-3)
+        String accessToken = delegateAccessToken(mokaPersnl);
+        String refreshToken = delegateRefreshToken(mokaPersnl);
 
-        response.setHeader("Authorization", "Bearer " + accessToken);  // (4-4)
-        response.setHeader("Refresh", refreshToken);                   // (4-5)
+        response.setHeader("Authorization", "Bearer " + accessToken);
+        response.setHeader("Refresh", refreshToken);
 
-        this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);  // (1) 추가
+        this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }
 
-    // (5)
+
     private String delegateAccessToken(MokaPersnl mokaPersnl) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", mokaPersnl.getPersnlId()); // 아마 여기서 Persnl의 어떤 요소를 username으로 받는지 결정하는거 같다. id일지 email일지
@@ -76,7 +76,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         return accessToken;
     }
 
-    // (6)
+
     private String delegateRefreshToken(MokaPersnl mokaPersnl) {
         String subject = mokaPersnl.getPersnlId();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
