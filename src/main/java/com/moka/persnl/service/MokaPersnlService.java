@@ -1,5 +1,6 @@
 package com.moka.persnl.service;
 
+import com.moka.auth.utils.CustomAuthorityUtils;
 import com.moka.common.entity.MokaCommonRankType;
 import com.moka.common.repository.MokaCommonRankTypeRepository;
 import com.moka.exception.BusinessLogicException;
@@ -7,6 +8,7 @@ import com.moka.exception.ExceptionCode;
 import com.moka.persnl.entity.MokaPersnl;
 import com.moka.persnl.repository.MokaPersnlRepository;
 import com.moka.utils.CustomBeanUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,10 +25,17 @@ public class MokaPersnlService {
 
     private final CustomBeanUtils<MokaPersnl> beanUtils;
 
+    private final PasswordEncoder passwordEncoder;
+    private final CustomAuthorityUtils authorityUtils;
+
     public MokaPersnlService(MokaPersnlRepository mokaPersnlRepository,
-                                     CustomBeanUtils<MokaPersnl> beanUtils) {
+                                     CustomBeanUtils<MokaPersnl> beanUtils,
+                             PasswordEncoder passwordEncoder,
+                             CustomAuthorityUtils authorityUtils) {
         this.mokaPersnlRepository = mokaPersnlRepository;
         this.beanUtils = beanUtils;
+        this.passwordEncoder = passwordEncoder;
+        this.authorityUtils = authorityUtils;
     }
 
     public MokaPersnl createPersnl(MokaPersnl mokaPersnl){
@@ -84,6 +93,13 @@ public class MokaPersnlService {
         System.out.println("");
 
         /////
+
+        String encryptedPassword = passwordEncoder.encode(mokaPersnl.getPersnlPw());
+        System.out.println("passwordEncoder.encode(mokaPersnl.getPersnlPw()); : "+encryptedPassword);
+        mokaPersnl.setPersnlPw(encryptedPassword);
+
+        List<String> roles = authorityUtils.createRoles(mokaPersnl.getPersnlEmail());
+        mokaPersnl.setRoles(roles);
 
         return mokaPersnlRepository.save(mokaPersnl);
         // 수동 insert 테스트

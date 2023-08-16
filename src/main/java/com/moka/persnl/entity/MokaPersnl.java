@@ -11,6 +11,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -62,6 +64,9 @@ public class MokaPersnl {
 
     @Column
     private String updateIp;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "persnl_type_code")

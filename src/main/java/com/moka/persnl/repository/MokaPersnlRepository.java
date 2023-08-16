@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public interface MokaPersnlRepository extends JpaRepository<MokaPersnl, String> {
 
@@ -39,5 +40,7 @@ public interface MokaPersnlRepository extends JpaRepository<MokaPersnl, String> 
 //                      @Param("persnlTypeCode") String persnlTypeCode, @Param("createPersnl") String createPersnl, @Param("createDttm") LocalDateTime createDttm,
 //                      @Param("createIp") String createIp);
 // 수동쿼리는 성공.
+
+    Optional<MokaPersnl> findByPersnlEmail(String persnlEmail);
 
 }
