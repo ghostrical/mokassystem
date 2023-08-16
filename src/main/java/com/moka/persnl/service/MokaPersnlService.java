@@ -98,7 +98,7 @@ public class MokaPersnlService {
         System.out.println("passwordEncoder.encode(mokaPersnl.getPersnlPw()); : "+encryptedPassword);
         mokaPersnl.setPersnlPw(encryptedPassword);
 
-        List<String> roles = authorityUtils.createRoles(mokaPersnl.getPersnlEmail());
+        List<String> roles = authorityUtils.createRoles(mokaPersnl.getMokaCommonPersnlType().getCommonPersnlTypeCode());
         mokaPersnl.setRoles(roles);
 
         return mokaPersnlRepository.save(mokaPersnl);
@@ -122,6 +122,12 @@ public class MokaPersnlService {
         MokaPersnl updatingMokaPersnl =
                 beanUtils.copyNonNullProperties(mokaPersnl, findMokaPersnl);
 
+        String encryptedPassword = passwordEncoder.encode(mokaPersnl.getPersnlPw());
+        System.out.println("passwordEncoder.encode(mokaPersnl.getPersnlPw()); : "+encryptedPassword);
+        mokaPersnl.setPersnlPw(encryptedPassword);
+
+        List<String> roles = authorityUtils.createRoles(mokaPersnl.getMokaCommonPersnlType().getCommonPersnlTypeCode());
+        mokaPersnl.setRoles(roles);
 
         updatingMokaPersnl.setUpdateDttm(LocalDateTime.now());
 

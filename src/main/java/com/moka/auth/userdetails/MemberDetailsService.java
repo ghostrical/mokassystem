@@ -27,7 +27,7 @@ public class MemberDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        Optional<MokaPersnl> optionalMember = mokaPersnlRepository.findByPersnlEmail(username);
+        Optional<MokaPersnl> optionalMember = mokaPersnlRepository.findByPersnlId(username);
 
         MokaPersnl findMember = optionalMember.orElseThrow(() -> new BusinessLogicException(ExceptionCode.NOT_FOUND));
 
@@ -38,7 +38,7 @@ public class MemberDetailsService implements UserDetailsService {
         // (1) ////// email
         MemberDetails(MokaPersnl mokaPersnl) {
             setPersnlSerialNum(mokaPersnl.getPersnlSerialNum());
-            setPersnlEmail(mokaPersnl.getPersnlEmail());
+            setPersnlId(mokaPersnl.getPersnlId());
             setPersnlPw(mokaPersnl.getPersnlPw());
             setRoles(mokaPersnl.getRoles());
         }
@@ -57,7 +57,7 @@ public class MemberDetailsService implements UserDetailsService {
         ////// email
         @Override
         public String getUsername() {
-            return getPersnlEmail();
+            return getPersnlId();
         }
 
         @Override

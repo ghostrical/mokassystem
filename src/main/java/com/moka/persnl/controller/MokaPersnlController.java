@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 @Validated
 public class MokaPersnlController {
 
+    // 로그인 : http://localhost:8080/moka/v1/auth/login
+
     private final static String MOKA_PERSNL_DEFAULT_URL = "/v1/persnl";
 
     private final MokaPersnlService mokaPersnlService;

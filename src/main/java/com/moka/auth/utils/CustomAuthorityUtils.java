@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomAuthorityUtils {
-    @Value("${mail.address.admin}")
-    private String adminMailAddress;
+   // @Value("${mail.address.admin}")
+    private String adminPersnlTypeCode = "PTA001";
 
     private final List<GrantedAuthority> ADMIN_ROLES = AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER");
     private final List<GrantedAuthority> USER_ROLES = AuthorityUtils.createAuthorityList("ROLE_USER");
@@ -21,7 +21,7 @@ public class CustomAuthorityUtils {
 
     // 메모리 상의 Role을 기반으로 권한 정보 생성.
     public List<GrantedAuthority> createAuthorities(String email) {
-        if (email.equals(adminMailAddress)) {
+        if (email.equals(adminPersnlTypeCode)) {
             return ADMIN_ROLES;
         }
         return USER_ROLES;
@@ -37,7 +37,7 @@ public class CustomAuthorityUtils {
 
     // DB 저장 용
     public List<String> createRoles(String email) {
-        if (email.equals(adminMailAddress)) {
+        if (email.equals(adminPersnlTypeCode)) {
             return ADMIN_ROLES_STRING;
         }
         return USER_ROLES_STRING;

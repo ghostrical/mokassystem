@@ -63,10 +63,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     // (5)
     private String delegateAccessToken(MokaPersnl mokaPersnl) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", mokaPersnl.getPersnlEmail());
+        claims.put("username", mokaPersnl.getPersnlId()); // 아마 여기서 Persnl의 어떤 요소를 username으로 받는지 결정하는거 같다. id일지 email일지
         claims.put("roles", mokaPersnl.getRoles());
 
-        String subject = mokaPersnl.getPersnlEmail();
+        String subject = mokaPersnl.getPersnlId();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getAccessTokenExpirationMinutes());
 
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
@@ -78,7 +78,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     // (6)
     private String delegateRefreshToken(MokaPersnl mokaPersnl) {
-        String subject = mokaPersnl.getPersnlEmail();
+        String subject = mokaPersnl.getPersnlId();
         Date expiration = jwtTokenizer.getTokenExpiration(jwtTokenizer.getRefreshTokenExpirationMinutes());
         String base64EncodedSecretKey = jwtTokenizer.encodeBase64SecretKey(jwtTokenizer.getSecretKey());
 

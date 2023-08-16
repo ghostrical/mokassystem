@@ -43,4 +43,6 @@ public interface MokaPersnlRepository extends JpaRepository<MokaPersnl, String> 
 
     Optional<MokaPersnl> findByPersnlEmail(String persnlEmail);
 
+    Optional<MokaPersnl> findByPersnlId(String persnlId);
+
 }
