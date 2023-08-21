@@ -1,4 +1,4 @@
-package com.moka.factory;
+package com.moka.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

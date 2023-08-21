@@ -1,7 +1,7 @@
 package com.moka.persnl.controller;
 
 
-import com.moka.factory.HttpServletRequestFactory;
+import com.moka.utils.HttpServletRequestFactory;
 import com.moka.persnl.dto.MokaPersnlPatchDto;
 import com.moka.persnl.dto.MokaPersnlPostDto;
 import com.moka.persnl.dto.MokaPersnlResponseDto;
