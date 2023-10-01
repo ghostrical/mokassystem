@@ -30,28 +30,18 @@ public class MokaFactoryService {
     public MokaFactory createFactory(MokaFactory mokaFactory){
 
         if(mokaFactoryRepository.count() == 0){
-            System.out.println("2222");
             mokaFactory.setFactorySerialNum("FAC001");
-            System.out.println("3333");
 
         }
         else {
-            System.out.println("000");
 
             String findMaxCode = mokaFactoryRepository.findMaxCode();
 
-            System.out.println("111");
-            System.out.println("findmaxcode.id + "+ findMaxCode);
-            System.out.println("findMaxCode.substring(0,3) : "+findMaxCode.substring(0,3));
             String findMaxCodea = findMaxCode.substring(0,3);
-            System.out.println("findMaxCode.substring(3,6) : "+findMaxCode.substring(3,6));
             int findMaxCodeb = Integer.parseInt(findMaxCode.substring(3,6)) + 1;
             String findMaxCodec = String.format("%03d",findMaxCodeb);
-            System.out.println("findMaxCodec : "+findMaxCodec);
 
             String findMax = findMaxCodea+findMaxCodec;
-
-            System.out.println("findMax : "+findMax);
 
             mokaFactory.setFactorySerialNum(findMax);
 
