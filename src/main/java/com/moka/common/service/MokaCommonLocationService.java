@@ -28,17 +28,13 @@ public class MokaCommonLocationService {
     public MokaCommonLocation createMokaCommonLocation(MokaCommonLocation mokaCommonLocation){
 
         if(mokaCommonLocationRepository.count() == 0){
-            System.out.println("2222");
             mokaCommonLocation.setCommonLocationCode("L001");
-            System.out.println("3333");
 
         }
         else {
-            System.out.println("000");
 
             String findMaxCode = mokaCommonLocationRepository.findMaxCode();
 
-            System.out.println("111");
             System.out.println("findmaxcode.id + "+ findMaxCode);
             System.out.println("findMaxCode.substring(0,1) : "+findMaxCode.substring(0,1));
             String findMaxCodea = findMaxCode.substring(0,1);
