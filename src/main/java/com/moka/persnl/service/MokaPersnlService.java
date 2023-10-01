@@ -58,8 +58,6 @@ public class MokaPersnlService {
     public MokaPersnl updateMokaPersnl(MokaPersnl mokaPersnl){
         MokaPersnl findMokaPersnl = findVerifiedMokaPersnl(mokaPersnl.getPersnlSerialNum());
 
-        System.out.println("update date : "+findMokaPersnl.getUpdateDttm());
-        System.out.println("create date : "+findMokaPersnl.getCreateDttm());
 
         MokaPersnl updatingMokaPersnl =
                 beanUtils.copyNonNullProperties(mokaPersnl, findMokaPersnl);
